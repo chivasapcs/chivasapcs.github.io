@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-  <meta name="description" content="My personal developer portfolio.">
+
+  <title>Hoang Anh | Portfolio</title>
+  <meta name="description" content="Hoang Anh's personal portfolio. Computer Science student learning C++ and algorithms.">
 
   <style>
     * {
@@ -16,10 +17,11 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #ffffff;
       color: #172033;
       line-height: 1.7;
@@ -30,14 +32,24 @@
       text-decoration: none;
     }
 
-    .container {
-      width: min(100% - 40px, 960px);
-      margin: auto;
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
+    .container {
+      width: min(100% - 40px, 1000px);
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+
     header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid #e5e7eb;
-      background: #ffffff;
     }
 
     nav {
@@ -49,7 +61,7 @@
     }
 
     .logo {
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 800;
       letter-spacing: -1px;
     }
@@ -60,43 +72,64 @@
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 26px;
       color: #64748b;
       font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
       color: #2563eb;
     }
 
+    /* Hero */
+
     .hero {
       padding: 110px 0 100px;
     }
 
-    .eyebrow {
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .eyebrow,
+    .section-label {
       color: #2563eb;
-      font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: 800;
       letter-spacing: 2px;
     }
 
     h1 {
       margin-top: 18px;
-      font-size: clamp(42px, 8vw, 68px);
+      font-size: clamp(44px, 7vw, 70px);
       line-height: 1.12;
       letter-spacing: -3px;
     }
 
     .subtitle {
-      margin-top: 18px;
+      margin-top: 20px;
       color: #64748b;
       font-size: 21px;
+      font-weight: 500;
     }
 
     .intro {
-      max-width: 600px;
+      max-width: 560px;
       margin-top: 16px;
       color: #64748b;
+      font-size: 16px;
     }
 
     .buttons {
@@ -107,16 +140,24 @@
     }
 
     .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 11px 20px;
+      border: 1px solid #dbe1ea;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
-      border: 1px solid #dbe1ea;
+      transition: all 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
     }
 
     .primary {
+      color: #ffffff;
       background: #2563eb;
-      color: white;
       border-color: #2563eb;
     }
 
@@ -124,65 +165,93 @@
       background: #1d4ed8;
     }
 
-    section {
-      padding: 65px 0;
-      border-top: 1px solid #f1f5f9;
+    /* Avatar */
+
+    .avatar-wrapper {
+      flex-shrink: 0;
+      padding: 10px;
+      border: 1px solid #dbeafe;
+      border-radius: 50%;
+      background: #eff6ff;
     }
 
-    .section-label {
-      color: #2563eb;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
+    .avatar {
+      display: block;
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #f1f5f9;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 70px 0;
+      border-top: 1px solid #f1f5f9;
     }
 
     h2 {
       margin: 8px 0 24px;
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing: -1px;
     }
 
     .muted {
+      max-width: 700px;
       color: #64748b;
     }
+
+    /* Skills */
 
     .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     .skill {
-      padding: 7px 13px;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
+      padding: 7px 15px;
+      border: 1px solid #dbeafe;
       border-radius: 7px;
+      background: #eff6ff;
+      color: #1d4ed8;
       font-size: 14px;
+      font-weight: 600;
     }
+
+    /* Projects */
 
     .project-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
 
     .project {
-      padding: 24px;
+      padding: 26px;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.25s, box-shadow 0.25s;
     }
 
     .project:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px #0f172a0d;
+      transform: translateY(-5px);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.07);
+    }
+
+    .project-type {
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
     .project h3 {
-      margin: 8px 0;
-      font-size: 19px;
+      margin: 12px 0 8px;
+      font-size: 20px;
     }
 
     .project p {
@@ -194,16 +263,28 @@
       display: inline-block;
       margin-top: 18px;
       color: #2563eb;
-      font-weight: 700;
       font-size: 14px;
+      font-weight: 700;
     }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact */
 
     .contact-box {
       padding: 30px;
-      background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      border-radius: 14px;
+      background: #f8fafc;
     }
+
+    .contact-box p {
+      color: #64748b;
+    }
+
+    /* Footer */
 
     footer {
       padding: 28px 0;
@@ -212,22 +293,75 @@
       font-size: 13px;
     }
 
-    @media (max-width: 600px) {
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(100% - 32px, 1000px);
+      }
+
+      nav {
+        min-height: 68px;
+      }
+
       .nav-links {
-        gap: 12px;
+        gap: 14px;
         font-size: 12px;
       }
 
       .hero {
-        padding: 75px 0;
+        padding: 65px 0;
+      }
+
+      .hero-layout {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 28px;
+      }
+
+      .avatar {
+        width: 155px;
+        height: 155px;
       }
 
       h1 {
+        font-size: 48px;
         letter-spacing: -2px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      section {
+        padding: 52px 0;
       }
 
       .project-grid {
         grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
@@ -236,7 +370,7 @@
 <body>
   <header>
     <nav class="container">
-      <a class="logo" href="#">YourName<span>.</span></a>
+      <a class="logo" href="#">Hoang Anh<span>.</span></a>
 
       <div class="nav-links">
         <a href="#about">About</a>
@@ -248,102 +382,137 @@
 
   <main>
     <div class="container">
-      <div class="hero">
-        <p class="eyebrow">ASPIRING DEVELOPER</p>
-        <h1>Hi, I'm<br>Your Name.</h1>
-        <p class="subtitle">Student & Future Software Engineer</p>
-        <p class="intro">
-          I'm learning programming, algorithms, and problem solving.
-          I enjoy building projects and improving my skills every day.
-        </p>
 
-        <div class="buttons">
-          <a class="button primary" href="#projects">View My Projects ↗</a>
-          <a class="button" href="#contact">Contact Me</a>
+      <!-- Hero -->
+      <div class="hero hero-layout">
+        <div class="hero-text">
+          <p class="eyebrow">ASPIRING DEVELOPER</p>
+
+          <h1>Hi, I'm<br>Hoang Anh.</h1>
+
+          <p class="subtitle">Computer Science Student</p>
+
+          <p class="intro">
+            I'm a student learning programming and algorithms.
+            I'm currently improving my coding skills and
+            exploring computer science.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="#projects">
+              View My Projects ↗
+            </a>
+
+            <a class="button" href="#contact">
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        <div class="avatar-wrapper">
+          <img
+            class="avatar"
+            src="avatar.jpg"
+            alt="Hoang Anh's portrait"
+            onerror="this.style.display='none';"
+          >
         </div>
       </div>
 
+      <!-- About -->
       <section id="about">
         <p class="section-label">01 / ABOUT</p>
         <h2>About Me</h2>
+
         <p class="muted">
-          I'm a student passionate about programming and technology.
-          Currently, I'm learning C++, practicing algorithms, and
-          exploring software development.
+          I'm a student learning programming and algorithms.
+          I enjoy solving problems, exploring new concepts,
+          and improving my coding skills step by step.
         </p>
 
         <div class="skills">
           <span class="skill">C++</span>
-          <span class="skill">Problem Solving</span>
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">Git & GitHub</span>
         </div>
       </section>
 
+      <!-- Projects -->
       <section id="projects">
         <p class="section-label">02 / MY WORK</p>
         <h2>Featured Projects</h2>
 
         <div class="project-grid">
           <article class="project">
-            <p>PROJECT 01 · C++</p>
-            <h3>Algorithm Practice</h3>
+            <p class="project-type">PROJECT 01 · C++</p>
+            <h3>Programming Practice</h3>
+
             <p>
-              A collection of C++ exercises, algorithms,
-              and solutions to programming problems.
+              A collection of C++ exercises and programming
+              problems that help me develop logical thinking
+              and problem-solving skills.
             </p>
-            <a class="project-link"
-               href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">
-              View Source Code ↗
+
+            <a
+              class="project-link"
+              href="https://github.com/chivasapcs?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore Repositories ↗
             </a>
           </article>
 
           <article class="project">
-            <p>PROJECT 02 · WEB</p>
+            <p class="project-type">PROJECT 02 · WEB</p>
             <h3>Personal Portfolio</h3>
+
             <p>
-              My personal website built with HTML and CSS
-              to showcase my skills and projects.
+              My personal website built with HTML and CSS,
+              published using GitHub Pages.
             </p>
-            <a class="project-link"
-               href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">
-              View Repository ↗
+
+            <a
+              class="project-link"
+              href="https://chivasapcs.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Website ↗
             </a>
           </article>
         </div>
       </section>
 
+      <!-- Contact -->
       <section id="contact">
         <p class="section-label">03 / GET IN TOUCH</p>
         <h2>Contact</h2>
 
         <div class="contact-box">
-          <p class="muted">
-            I'm always happy to connect, learn, and collaborate.
+          <p>
+            I'm always open to learning, connecting,
+            and collaborating with other developers.
           </p>
-          <p style="margin-top: 16px;">
-            GitHub:
-            <a class="project-link"
-               href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">
-              Visit my profile ↗
-            </a>
-          </p>
-          <p class="muted" style="margin-top: 8px;">
-            Email: your-email@example.com
-          </p>
+
+          <a
+            class="project-link"
+            href="https://github.com/chivasapcs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Profile ↗
+          </a>
         </div>
       </section>
+
     </div>
   </main>
 
   <footer>
-    <div class="container">
-      © 2026 Your Name. Built with HTML & CSS.
+    <div class="container footer-content">
+      <p>© 2026 Hoang Anh</p>
+      <p>Built with HTML & CSS · Hosted on GitHub Pages</p>
     </div>
   </footer>
 </body>
 </html>
+
